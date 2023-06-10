@@ -1,5 +1,5 @@
 import express from 'express';
-import router from './ContactRouter';
+import router from './StudentRouter';
 import cors from 'cors';
 import path from 'path';
 

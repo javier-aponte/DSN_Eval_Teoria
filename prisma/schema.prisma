@@ -10,14 +10,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Contact {
-  id         Int      @id @default(autoincrement())
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  name       String
-  lastName   String
-  email      String
-  birthDate  DateTime
-  pictureKey String
-  pictureUrl String
+model Student {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  firstName String
+  lastName  String
+  birthDate String
+  grade     String
+  email     String
+  S3Key     String
+  S3Url     String
 }

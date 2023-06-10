@@ -2,24 +2,29 @@
 <%- include('layout/navbar'); %>
 <div class="container-fluid p-4">
   <div class="card" style="width: 30rem;">
-    <img src="<%= contact.pictureUrl %>" class="card-img-top" alt="...">
+    <img src="<%= student.S3Url %>" class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title"><%= contact.name %> <%= contact.lastName %></h5>
+      <h5 class="card-title"><%= student.firstName %> <%= student.lastName %></h5>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item"><%= contact.email %></li>
-      <li class="list-group-item"><%= contact.birthDate %></li>
+      <li class="list-group-item"><%= student.birthDate %></li>
+      <li class="list-group-item"><%= student.grade %></li>
+      <li class="list-group-item"><%= student.email %></li>
     </ul>
     <div class="card-footer">
       <a href="/" class="btn btn-secondary">
         <i class="bi bi-arrow-left me-2"></i>
         Volver
       </a>
-      <a href="/<%= contact.id %>/edit" class="btn btn-warning">
+      <a href="/<%= student.id %>/edit" class="btn btn-warning">
         <i class="bi bi-pencil me-2"></i>
         Editar
       </a>
+      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">
+        <i class="bi bi-trash-fill me-2"></i>
+        Eliminar
     </div>
   </div>
 </div>
+<%- include('deleteModal'); %>
 <%- include('layout/footer') %>

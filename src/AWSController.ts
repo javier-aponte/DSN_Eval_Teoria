@@ -14,7 +14,7 @@ const s3 = new S3({
 export const uploadFile = async (fileBuffer: any, fileOriginalName: string, mimeType: string) => {
   const params: PutObjectCommand = new PutObjectCommand({
     Bucket: process.env.bucket ?? '',
-    Key: `images/${fileOriginalName}`,
+    Key: `${fileOriginalName}`,
     Body: fileBuffer,
     ContentType: mimeType,
     ContentDisposition: 'inline'

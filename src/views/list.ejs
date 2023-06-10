@@ -7,77 +7,75 @@
       <%= alert.message %>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    <% if (contacts.length <= 0 && alert.type != 'danger' ) { %>
+    <% if (students.length <= 0 && alert.type != 'danger' ) { %>
       <a href="/nuevo" class="btn btn-success">
         <i class="bi bi-person-plus-fill me-2"></i>
-        Nuevo Contacto
+        Nuevo Estudiante
       </a>
     <% } %>
   <% } else { %>
     <a href="/nuevo" class="btn btn-success mb-3">
-        <i class="bi bi-person-plus-fill me-2"></i>
-        Nuevo Contacto
-      </a>
-    <div class="table-responsive">
+      <i class="bi bi-person-plus-fill me-2"></i>
+      Nuevo Estudiante
+    </a>
+    <div class="card">
+      <div class="card-body">
+        <form name="searchForm" id="searchForm" action="/" method="get">
+          <div class="input-group">
+            <span class="input-group-text" id="basic-addon1">
+              <i class="bi bi-search"></i>
+            </span>
+              <input name="searchGrade" id="searchForm" type="number" min="1" max="6" form="searchForm" class="form-control" placeholder="Grado" aria-label="Buscar Grado">
+            </div>
+          </form>
+      </div>
+    </div>
+    
+    <div class="table-responsive p-2">
       <table class="table table-striped">
         <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Nombres</th>
             <th scope="col">Apellidos</th>
-            <th scope="col">Correo Electrónico</th>
             <th scope="col">Fecha de Nacimiento</th>
+            <th scope="col">Correo Electrónico</th>
+            <th scope="col">Ciclo</th>
             <th scope="col">Foto</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody class="table-group-divider">
-          <% contacts.forEach(contact => { %>
+          <% students.forEach(student => { %>
             <tr>
-              <th scope="row"><%= contact.id %></th>
-              <td><%= contact.name %></td>
-              <td><%= contact.lastName %></td>
-              <td><%= contact.email %></td>
-              <td><%= contact.birthDate %></td>
+              <th scope="row"><%= student.id %></th>
+              <td><%= student.firstName %></td>
+              <td><%= student.lastName %></td>
+              <td><%= student.birthDate %></td>
+              <td><%= student.email %></td>
+              <td><%= student.grade %></td>
               <td>
-                <a href="<%= contact.pictureUrl %>" class="text-decoration-none text-reset">
+                <a href="<%= student.S3Url %>" class="text-decoration-none text-reset">
                   <i class="bi bi-image-fill"></i>
                 </a>
               </td>
               <td>
-                <a href="/<%= contact.id %>" class="text-decoration-none text-reset">
+                <a href="/<%= student.id %>" class="text-decoration-none text-reset">
                   <i class="bi bi-eye-fill"></i>
                 </a>
-                <a href="/<%= contact.id %>/edit" class="text-decoration-none text-reset">
+                <a href="/<%= student.id %>/edit" class="text-decoration-none text-reset">
                   <i class="bi bi-pen-fill"></i>
                 </a>
                 <i class="bi bi-trash-fill" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal"></i>
               </td>
-              <form id="deleteForm" action="/<%= contact.id %>/delete" method="POST">
-                <input type="hidden" name="pictureKey" id="pictureKey" value="<%= contact.pictureKey %>"></input>
+              <form id="deleteForm" action="/<%= student.id %>/delete" method="POST">
+                <input type="hidden" name="S3Key" id="S3Key" value="<%= student.S3Key %>"></input>
               </form>
             </tr>
-          <% }); %>
-        </tbody>
-      </table>
-    </div>
-  <% } %>
-</div>
-<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Delete</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>¿Estas seguro que deseas eliminar este contacto?</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-danger" form="deleteForm">Eliminar</button>
-      </div>
-    </div>
-  </div>
-</div>
-<%- include('layout/footer'); %>
+            <% }); %>
+          </tbody>
+        </table>
+    </div>    
+    <%- include('deleteModal'); %>
+      <% } %>
+    <%- include('layout/footer'); %>

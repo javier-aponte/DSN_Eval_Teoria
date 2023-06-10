@@ -2,19 +2,29 @@
 <%- include('layout/navbar'); %>
 <div class="container-fluid p-4">
   <div class="card col-lg-6">
-    <form action="/<%= contact.id %>/edit" method="post" enctype="multipart/form-data">
+    <form action="/<%= student.id %>/edit" method="post" enctype="multipart/form-data">
       <div class="card-body">
         <label for="name" class="form-label">Nombres</label>
-        <input type="text" name="name" id="name" class="form-control mb-2" value="<%= contact.name %>" required>
+        <input type="text" name="name" id="name" class="form-control mb-2" value="<%= student.firstName %>" required>
         <label for="lastName" class="form-label">Apellidos</label>
-        <input type="text" name="lastName" id="lastName" class="form-control mb-2" value="<%= contact.lastName %>" required>
-        <label for="email" class="form-label">Correo Electrónico</label>
-        <input type="email" name="email" id="email" class="form-control mb-2" value="<%= contact.email %>" required>
+        <input type="text" name="lastName" id="lastName" class="form-control mb-2" value="<%= student.lastName %>" required>
         <label for="birthDate" class="form-label">Fecha de Nacimiento</label>
-        <input type="date" name="birthDate" id="birthDate" class="form-control mb-2" required>
+        <input type="date" name="birthDate" id="birthDate" class="form-control mb-2" value="<%= student.birthDate %>" required>
+        <label for="grade" class="form-label">Ciclo</label>
+        <select name="grade" id="grade" class="form-select mb-2" required>
+          <option selected value="<%= student.grade %>"><%= student.grade %>er Ciclo</option>
+          <option value="1">1er Ciclo</option>
+          <option value="2">2do Ciclo</option>
+          <option value="3">3er Ciclo</option>
+          <option value="4">4to Ciclo</option>
+          <option value="5">5to Ciclo</option>
+          <option value="6">6to Ciclo</option>
+        </select>
+        <label for="email" class="form-label">Correo Electrónico</label>
+        <input type="email" name="email" id="email" class="form-control mb-2" value="<%= student.email %>" required>
         <label for="picture" class="form-label">Foto</label>
         <input class="form-control" name="picture" id="picture" type="file" accept="image/*" required>
-        <input type="hidden" name="oldPictureKey" value="<%= contact.pictureKey %>">
+        <input type="hidden" name="oldPictureKey" value="<%= student.S3Key %>">
       </div>
       <div class="card-footer text-body-secondary">
         <a href="/" class="btn btn-danger">
@@ -23,7 +33,7 @@
         </a>
         <button type="submit" class="btn btn-primary">
           <i class="bi bi-check-lg"></i>
-          Crear
+          Guardar
         </button>
       </div>
     </form>
