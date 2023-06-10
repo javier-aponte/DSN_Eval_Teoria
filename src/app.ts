@@ -1,14 +1,11 @@
 import express from 'express';
 import router from './ContactRouter';
-import { Request, Response } from 'express';
-// import cors from 'cors';
+import cors from 'cors';
 import path from 'path';
 
 const app = express();
 
-/* app.use(cors({
-  origin: 'http://localhost:4200'
-})); */
+app.use(cors());
 
 app.set('view engine', 'ejs');
 app.set('views', './src/views');

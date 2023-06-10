@@ -1,0 +1,1 @@
+Cambiar el nombre de '.env-example' a '.env' y llenar los campos con una url de base de datos y credenciales AWS.
