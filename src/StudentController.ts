@@ -173,7 +173,7 @@ export const findFirstStudent = async (req: Request, res: Response) => {
 export const showCreateStudentForm = async (req: Request, res: Response) => {
 
   let locals = {
-    title: 'Nuevo Estudiant',
+    title: 'Nuevo Estudiante',
     code: 200,
     alert: {
       type: '',
